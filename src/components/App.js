@@ -12,7 +12,8 @@ import AddMovieForm from './AddMovieForm';
 import FavoriteMovieList from './FavoriteMovieList';
 
 const App = props => {
-  const displayFavorites = true;
+  console.log(props)
+  
 
   return (
     <div>
@@ -23,7 +24,7 @@ const App = props => {
       <div className="container">
         <MovieHeader/>
         <div className="row ">
-          {displayFavorites && <FavoriteMovieList/>}
+          {props.showFavorites && <FavoriteMovieList/>}
         
           <Switch>
             <Route exact path="/movies/add">
@@ -38,7 +39,7 @@ const App = props => {
               <MovieList/>
             </Route>
 
-            <Route path="/">
+       x``     <Route path="/">
               <Redirect to="/movies"/>
             </Route>
           </Switch>
@@ -48,4 +49,4 @@ const App = props => {
   );
 };
 
-export default App;
+export default connect((s)=> ({showFavorites: s.favorites.showFavorites}))(App);
